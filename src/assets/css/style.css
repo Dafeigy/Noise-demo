@@ -1,0 +1,84 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background: black;
+}
+
+
+@font-face{
+    font-family: Potra;
+    src: url("../font/Potra-2.ttf");
+}
+
+
+.title{
+    color: black;
+    margin: 0 auto;
+    position: absolute;
+    left: 50%;top: 50%;
+    transform: translate(-50%,-240%);;
+    width: 30%;
+    height: 12%;
+    border-radius: 12px;
+    opacity: 0.6;
+}
+
+.title p{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    font-family: YaHei;
+    z-index: 2;
+    text-align: center;
+    white-space: nowrap;
+    pointer-events: none;
+    font-size: 48;
+    letter-spacing: 1em;
+    padding-left: 1em;
+    text-transform: uppercase;
+    color: #fff;
+    opacity: 1.;
+    font-weight: normal;
+}
+
+.info{
+    color: black;
+    margin: 0 auto;
+    position: absolute;
+    left: 50%;top: 50%;
+    transform: translate(-50%,250%);
+    width: 30%;
+    height: 12%;
+    opacity: 80%;
+    border-radius: 12px;
+}
+
+.info a{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    font-family: YaHei;
+    z-index: 2;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 18;
+    padding-left: 1em;
+    text-transform: uppercase;
+    color: #fff;
+    opacity: 1.;
+    font-weight: normal;
+}
