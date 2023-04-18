@@ -4,7 +4,7 @@
 }
 
 body{
-    background: black;
+    background: #222;
 }
 
 
@@ -15,16 +15,27 @@ body{
 
 
 .title{
+    -webkit-transition: all .8s;
     color: black;
     margin: 0 auto;
     position: absolute;
     left: 50%;top: 50%;
     transform: translate(-50%,-240%);;
-    width: 30%;
+    width: 50%;
     height: 12%;
-    border-radius: 12px;
-    opacity: 0.6;
+    border-radius: 25px;
+    opacity: 0.9;
+    
 }
+
+.title:hover{
+    cursor: pointer;
+    color: black;
+    background: #222;
+    opacity: 0.2;
+}
+
+
 
 .title p{
     position: absolute;
@@ -40,13 +51,14 @@ body{
     text-align: center;
     white-space: nowrap;
     pointer-events: none;
-    font-size: 48;
+    font-size: 52;
     letter-spacing: 1em;
     padding-left: 1em;
     text-transform: uppercase;
     color: #fff;
     opacity: 1.;
     font-weight: normal;
+    font-family: Potra;
 }
 
 .info{
@@ -58,7 +70,7 @@ body{
     width: 30%;
     height: 12%;
     opacity: 80%;
-    border-radius: 12px;
+    border-radius: 25px;
 }
 
 .info a{
@@ -77,8 +89,11 @@ body{
     cursor: pointer;
     font-size: 18;
     padding-left: 1em;
-    text-transform: uppercase;
+    letter-spacing: 0.21em;
+    /* text-transform: uppercase; */
     color: #fff;
     opacity: 1.;
     font-weight: normal;
+    text-decoration: none;
+    font-family: Yahei;
 }
