@@ -7,6 +7,31 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
+    
+    <script src="js/simplex-noise.js"></script>
+    <div class="title""">
+        <p><b>Noise Wave</b></p>
+    </div>
+
+    <div class="banner">
+        <div class="about">
+            <p>About</p>
+        </div>
+        <div class="article">
+            <p> logs</p>
+        </div>
+        <div class="demo">
+            <p>Demo</p>
+        </div>
+        
+    </div>
+
+    <div class="info">
+        <a href = "https://github.com/dafeigy">@ -林肯花园-</a>
+        <audio src="song/1.mp3" controls="controls" preload id="music"   hidden loop="true" autostart="true">  </audio>
+    </div>
+
+
     <script type="importmap">
         {
         "imports": {
@@ -15,18 +40,64 @@
         }
         }
     </script>
-    <script src="js/simplex-noise.js"></script>
-    <div class="title" onclick="a();"">
-        <p><b>Noise Wave</b></p>
-    </div>
-    
     <script type="module">
         
         import * as THREE from 'three';
 	    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-        
-        var simplex = new SimplexNoise()
+        import { GUI } from 'https://threejsfundamentals.org/threejs/../3rdparty/dat.gui.module.js'
 
+        var WireFrame = false;
+        var waveAmplitude = 1;
+        var xShift = 5;
+        var yShift = 5;
+        var xFlow = 3;
+        var yFlow = 3;
+
+        const gui = new GUI()
+        const myObject = {
+            WireFrame: false,
+            waveAmplitude: 1,
+            xShift: 5,
+            yShift: 5,
+            xFlow: 3,
+            yFlow: 3,
+            playMusic: function(){
+                document.getElementById("music").volume = 0.08;
+                var audio = document.getElementById('music'); 
+
+                if(audio.paused){                 
+                    audio.play();//audio.play();// 播放  
+                }
+                else{
+                    audio.pause();
+                } 
+            }
+
+        };
+
+        gui.add( myObject, 'WireFrame' ).onChange(value => {
+            planeMaterial.wireframe = value;
+        });
+
+        gui.add( myObject, 'waveAmplitude', 0, 10 ).onChange(value => {
+            waveAmplitude = value;
+        })
+        gui.add( myObject, 'xShift', 0, 10 ).onChange(value => {
+            xShift = value/10;
+        });
+        gui.add( myObject, 'yShift', 0, 10 ).onChange(value => {
+            yShift = value/10;
+});
+        gui.add( myObject, 'xFlow', 0, 10 ).onChange(value => {
+            xFlow = value/10;
+});
+        gui.add( myObject, 'yFlow', 0, 10 ).onChange(value => {
+            yFlow = value/10;
+});     
+        gui.add( myObject, "playMusic");
+
+        gui.close()
+        var simplex = new SimplexNoise()
         var offsetX = 0
         var offsetY = 0
 
@@ -147,10 +218,18 @@
                 tx += row * 0.05
                 ty += col * 0.05
 
-                pos[i+2] = simplex.noise2D( (x+tx), (y+ty)) * 2
+                pos[i+2] = simplex.noise2D( xShift * x+ xFlow * tx, yShift * y + yFlow * ty) * waveAmplitude
 
             }
             planeGeometry.attributes.position.needsUpdate = true
+        }
+
+        function resizeWindow(){
+            w = window.innerWidth
+            h = window.innerHeight
+            renderer.setSize(w, h)
+            camera.aspect = w / h
+            camera.updateProjectionMatrix()
         }
 
         function render() {
@@ -163,30 +242,13 @@
             renderer.render(scene, camera); //执行渲染操作
             timeS = 0;
             update()
+            resizeWindow()
             }
         }
         render()
         
 
     </script>
-    <script>
-         function a(){
-            document.getElementById("music").volume = 0.08;
-            var audio = document.getElementById('music'); 
 
-            if(audio.paused){                 
-                audio.play();//audio.play();// 播放  
-            }
-            else{
-                audio.pause();
-            } 
-        }
-    </script>
-    <div class="info">
-        <a href = "https://github.com/dafeigy">@ -林肯花园-</a>
-        <audio src="song/1.mp3" controls="controls" preload id="music"   hidden loop="true" autostart="true">  </audio>
-    </div>
-    
-    
 </body>
 </html>
