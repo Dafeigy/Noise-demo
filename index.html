@@ -9,11 +9,11 @@
 <body>
     
     <script src="js/simplex-noise.js"></script>
-    <div class="title""">
+    <div class="title" id ='title'>
         <p><b>Noise Wave</b></p>
     </div>
 
-    <div class="banner">
+    <div class="banner" id = 'banner'>
         <div class="about">
             <p>About</p>
         </div>
@@ -26,7 +26,7 @@
         
     </div>
 
-    <div class="info">
+    <div class="info" id = 'info'>
         <a href = "https://github.com/dafeigy">@ -林肯花园-</a>
         <audio src="song/1.mp3" controls="controls" preload id="music"   hidden loop="true" autostart="true">  </audio>
     </div>
@@ -66,11 +66,29 @@
                 var audio = document.getElementById('music'); 
 
                 if(audio.paused){                 
-                    audio.play();//audio.play();// 播放  
+                    audio.play();
                 }
                 else{
                     audio.pause();
                 } 
+            },
+
+            save: function(){
+                saveFile();
+            },
+
+            reset: function(){
+                camera.position.set(0, 0, 80);
+                offsetX = 0
+                offsetY = 0
+                w = window.innerWidth;
+                h = window.innerHeight;
+            },
+            
+            hideElements: function(){
+                toggleElement("info");
+                toggleElement("banner");
+                toggleElement("title")
             }
 
         };
@@ -82,19 +100,24 @@
         gui.add( myObject, 'waveAmplitude', 0, 10 ).onChange(value => {
             waveAmplitude = value;
         })
-        gui.add( myObject, 'xShift', 0, 10 ).onChange(value => {
+        gui.add( myObject, 'xShift', 0, 100 ).onChange(value => {
             xShift = value/10;
         });
-        gui.add( myObject, 'yShift', 0, 10 ).onChange(value => {
+        gui.add( myObject, 'yShift', 0, 100 ).onChange(value => {
             yShift = value/10;
-});
-        gui.add( myObject, 'xFlow', 0, 10 ).onChange(value => {
-            xFlow = value/10;
-});
-        gui.add( myObject, 'yFlow', 0, 10 ).onChange(value => {
-            yFlow = value/10;
-});     
+        });
+        gui.add( myObject, 'xFlow', 0, 100 ).onChange(value => {
+                    xFlow = value/10;
+        });
+        gui.add( myObject, 'yFlow', 0, 100 ).onChange(value => {
+                    yFlow = value/10;
+        });
+        gui.add(myObject, "reset");
+        
+
         gui.add( myObject, "playMusic");
+        gui.add(myObject, "hideElements")
+        gui.add(myObject, 'save')
 
         gui.close()
         var simplex = new SimplexNoise()
@@ -113,20 +136,19 @@
         const camera = new THREE.PerspectiveCamera(60, w / h, 0.1, 1000);
 
         // 设置相机位置
-        camera.position.set(0, 0, 80);
+        camera.position.set(0, 0, 25);
         scene.add(camera);
 
         // 初始化渲染器
         const renderer = new THREE.WebGLRenderer({
             antialias: true,
-            alpha: true
+            alpha: true,
+            preserveDrawingBuffer: true,
         });
         // 设置渲染的尺寸大小
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setClearColor(0x000000, 0)
         
-        // console.log(renderer);
-        // 将webgl渲染的canvas内容添加到body
         document.body.appendChild(renderer.domElement);
 
         // 创建轨道控制器
@@ -174,7 +196,26 @@
         let light4 = new THREE.PointLight(conf.light4Color, conf.lightIntensity, lightDistance)
         light4.position.set(-r, y, 0)
         scene.add(light4)
-        // scene.fog = new THREE.FogExp2('rgb(78, 216, 195)', 0.006)
+
+        function saveFile() {
+            // 创建一个超链接元素，用来下载保存数据的文件
+            var link = document.createElement('a');
+            // 通过超链接herf属性，设置要保存到文件中的数据
+            var canvas = renderer.domElement;//获取canvas对象
+            link.href = canvas.toDataURL("image/png");
+            link.download = 'download.png'; //下载文件名
+            link.click(); //js代码触发超链接元素a的鼠标点击事件，开始下载文件到本地
+        }
+
+        function toggleElement(idName){
+            var info = document.getElementById(idName);
+            if(info.style.display == 'none'){
+                info.style.display=''
+            }
+            else{
+                info.style.display='none'
+            }
+        }
 
         //update light
         function updateLights(){

@@ -4,7 +4,7 @@
 }
 
 body{
-    background: #222;
+    background: #000;
 }
 
 
@@ -31,7 +31,6 @@ body{
 .title:hover{
     cursor: pointer;
     color: black;
-    background: #222;
     opacity: 0.9;
 }
 
@@ -126,7 +125,7 @@ body{
     margin: 0 auto;
     position: absolute;
     left: 50%;top: 50%;
-    transform: translate(-50%,250%);
+    transform: translate(-50%,300%);
     width: 30%;
     height: 12%;
     opacity: 80%;
