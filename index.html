@@ -7,6 +7,31 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
+    
+    <script src="js/simplex-noise.js"></script>
+    <div class="title" onclick="a();"">
+        <p><b>Noise Wave</b></p>
+    </div>
+
+    <div class="banner">
+        <div class="about">
+            <p>About</p>
+        </div>
+        <div class="article">
+            <p> logs</p>
+        </div>
+        <div class="demo">
+            <p>Demo</p>
+        </div>
+        
+    </div>
+
+    <div class="info">
+        <a href = "https://github.com/dafeigy">@ -林肯花园-</a>
+        <audio src="song/1.mp3" controls="controls" preload id="music"   hidden loop="true" autostart="true">  </audio>
+    </div>
+
+
     <script type="importmap">
         {
         "imports": {
@@ -15,11 +40,6 @@
         }
         }
     </script>
-    <script src="js/simplex-noise.js"></script>
-    <div class="title" onclick="a();"">
-        <p><b>Noise Wave</b></p>
-    </div>
-    
     <script type="module">
         
         import * as THREE from 'three';
@@ -229,11 +249,5 @@
             } 
         }
     </script>
-    <div class="info">
-        <a href = "https://github.com/dafeigy">@ -林肯花园-</a>
-        <audio src="song/1.mp3" controls="controls" preload id="music"   hidden loop="true" autostart="true">  </audio>
-    </div>
-    
-    
 </body>
 </html>
