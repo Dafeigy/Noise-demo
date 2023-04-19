@@ -48,10 +48,10 @@
 
         var WireFrame = false;
         var waveAmplitude = 1;
-        var xShift = 5;
-        var yShift = 5;
-        var xFlow = 3;
-        var yFlow = 3;
+        var xShift = 0;
+        var yShift = 0;
+        var xFlow = 1;
+        var yFlow = 1;
 
         const gui = new GUI()
         const myObject = {
@@ -81,6 +81,10 @@
                 camera.position.set(0, 0, 80);
                 offsetX = 0
                 offsetY = 0
+                xShift = 0;
+                yShift = 0;
+                xFlow = 1;
+                yFlow = 1;
                 w = window.innerWidth;
                 h = window.innerHeight;
             },
