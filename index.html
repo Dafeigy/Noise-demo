@@ -61,7 +61,7 @@
         // 创建轨道控制器
         const controls = new OrbitControls(camera, renderer.domElement);
 
-        const planeGeometry = new THREE.PlaneGeometry(200, 150, 200, 200);
+        const planeGeometry = new THREE.PlaneGeometry(200, 150, 80, 80);
         const planeMaterial = new THREE.MeshLambertMaterial(
             {color: 0xAFEEEE, 
             side: THREE.DoubleSide,
@@ -103,7 +103,7 @@
         let light4 = new THREE.PointLight(conf.light4Color, conf.lightIntensity, lightDistance)
         light4.position.set(-r, y, 0)
         scene.add(light4)
-        scene.fog = new THREE.FogExp2('rgb(78, 216, 195)', 0.006)
+        // scene.fog = new THREE.FogExp2('rgb(78, 216, 195)', 0.006)
 
         //update light
         function updateLights(){
@@ -147,7 +147,7 @@
                 tx += row * 0.05
                 ty += col * 0.05
 
-                pos[i+2] = simplex.noise2D(x+tx, y+ty) * 0.9
+                pos[i+2] = simplex.noise2D( (x+tx), (y+ty)) * 2
 
             }
             planeGeometry.attributes.position.needsUpdate = true
@@ -184,7 +184,7 @@
     </script>
     <div class="info">
         <a href = "https://github.com/dafeigy">@ -林肯花园-</a>
-        <audio src="song/1.mp3" controls="controls" preload id="music"   hidden> </audio>
+        <audio src="song/1.mp3" controls="controls" preload id="music"   hidden loop="true" autostart="true">  </audio>
     </div>
     
     
