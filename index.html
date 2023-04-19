@@ -9,7 +9,7 @@
 <body>
     
     <script src="js/simplex-noise.js"></script>
-    <div class="title" onclick="a();"">
+    <div class="title""">
         <p><b>Noise Wave</b></p>
     </div>
 
@@ -60,7 +60,19 @@
             xShift: 5,
             yShift: 5,
             xFlow: 3,
-            yFlow: 3
+            yFlow: 3,
+            playMusic: function(){
+                document.getElementById("music").volume = 0.08;
+                var audio = document.getElementById('music'); 
+
+                if(audio.paused){                 
+                    audio.play();//audio.play();// 播放  
+                }
+                else{
+                    audio.pause();
+                } 
+            }
+
         };
 
         gui.add( myObject, 'WireFrame' ).onChange(value => {
@@ -81,9 +93,10 @@
 });
         gui.add( myObject, 'yFlow', 0, 10 ).onChange(value => {
             yFlow = value/10;
-});
+});     
+        gui.add( myObject, "playMusic");
 
-        
+        gui.close()
         var simplex = new SimplexNoise()
         var offsetX = 0
         var offsetY = 0
@@ -236,18 +249,6 @@
         
 
     </script>
-    <script>
-         function a(){
-            document.getElementById("music").volume = 0.08;
-            var audio = document.getElementById('music'); 
 
-            if(audio.paused){                 
-                audio.play();//audio.play();// 播放  
-            }
-            else{
-                audio.pause();
-            } 
-        }
-    </script>
 </body>
 </html>
