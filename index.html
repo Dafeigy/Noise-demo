@@ -66,13 +66,19 @@
                 var audio = document.getElementById('music'); 
 
                 if(audio.paused){                 
-                    audio.play();//audio.play();// 播放  
+                    audio.play();
                 }
                 else{
                     audio.pause();
                 } 
+            },
+            reset: function(){
+                camera.position.set(0, 0, 80);
+                offsetX = 0
+                offsetY = 0
+                w = window.innerWidth;
+                h = window.innerHeight;
             }
-
         };
 
         gui.add( myObject, 'WireFrame' ).onChange(value => {
@@ -82,19 +88,20 @@
         gui.add( myObject, 'waveAmplitude', 0, 10 ).onChange(value => {
             waveAmplitude = value;
         })
-        gui.add( myObject, 'xShift', 0, 10 ).onChange(value => {
+        gui.add( myObject, 'xShift', 0, 100 ).onChange(value => {
             xShift = value/10;
         });
-        gui.add( myObject, 'yShift', 0, 10 ).onChange(value => {
+        gui.add( myObject, 'yShift', 0, 100 ).onChange(value => {
             yShift = value/10;
 });
-        gui.add( myObject, 'xFlow', 0, 10 ).onChange(value => {
+        gui.add( myObject, 'xFlow', 0, 100 ).onChange(value => {
             xFlow = value/10;
 });
-        gui.add( myObject, 'yFlow', 0, 10 ).onChange(value => {
+        gui.add( myObject, 'yFlow', 0, 100 ).onChange(value => {
             yFlow = value/10;
 });     
         gui.add( myObject, "playMusic");
+        gui.add(myObject, "reset");
 
         gui.close()
         var simplex = new SimplexNoise()
