@@ -57,10 +57,10 @@
         const myObject = {
             WireFrame: false,
             waveAmplitude: 1,
-            xShift: 5,
-            yShift: 5,
-            xFlow: 3,
-            yFlow: 3,
+            xShift: 0,
+            yShift: 0,
+            xFlow: 1,
+            yFlow: 1,
             playMusic: function(){
                 document.getElementById("music").volume = 0.08;
                 var audio = document.getElementById('music'); 
@@ -78,13 +78,14 @@
             },
 
             reset: function(){
-                camera.position.set(0, 0, 80);
+                camera.position.set(0, 0, 25);
                 offsetX = 0
                 offsetY = 0
                 xShift = 0;
                 yShift = 0;
                 xFlow = 1;
                 yFlow = 1;
+
                 w = window.innerWidth;
                 h = window.innerHeight;
             },
